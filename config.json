@@ -1,0 +1,13 @@
+{
+    "mcpServers": {
+        "just_facebook_mcp": {
+        "command": "uvx",
+        "args": [
+            "just_facebook_mcp"
+        ],
+        "env": {
+            "FACEBOOK_ACCESS_TOKEN": "<put_your_FB_token_here>",
+            "FACEBOOK_PAGE_ID": "<put_your_page_id_here>"}
+        }
+    }
+}
