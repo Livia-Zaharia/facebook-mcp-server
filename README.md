@@ -106,17 +106,69 @@ To find your Page ID:
 
   Go to your Facebook Page → About → Scroll down to view the ID
 
+### ⏰ Important: Facebook API Token Limitations
+
+**Facebook access tokens have limited lifespans** and will expire, causing API calls to fail. Understanding these limitations is crucial for maintaining your MCP server.
+
+#### **Token Types & Lifespans:**
+
+| Token Type | Lifespan | Use Case |
+|------------|----------|----------|
+| **Short-lived User Token** | 1-2 hours | Testing only |
+| **Long-lived User Token** | 60 days | Development |
+| **Short-lived Page Token** | 1-2 hours | Testing only |
+| **Long-lived Page Token** | 60 days | **Recommended for MCP** |
+| **System User Token** | No expiration* | Production apps |
+
+#### **When Tokens Expire:**
+- ❌ All MCP tools will return `OAuthException` errors
+- ❌ Error message: "Session has expired"
+- ❌ Error codes: 190 (expired token) or 463 (session expired)
+
+#### **Automatic Token Refresh:**
+We provide a script to easily generate long-lived tokens (60 days):
+
+```bash
+uv run python scripts/refresh_facebook_token.py
+```
+
+This script will:
+- ✅ Guide you through token generation
+- ✅ Exchange short-lived for long-lived tokens
+- ✅ Update your `.env` file automatically
+- ✅ Validate the new token
+
+#### **Best Practices:**
+- 🔄 **Refresh tokens every 50 days** to avoid expiration
+- 📅 **Set calendar reminders** for token renewal
+- 🤖 **Use long-lived Page tokens** for development
+- 🏢 **Consider System User tokens** for production
+
+#### **Troubleshooting Token Issues:**
+```bash
+# Check if your token is expired
+uv run python -c "
+from just_facebook_mcp.manager import Manager
+manager = Manager()
+try:
+    result = manager.get_page_fan_count()
+    print('✅ Token is working')
+except Exception as e:
+    print(f'❌ Token error: {e}')
+"
+```
+
 ### 5. 🏃‍♂️ Running the Server
 ```bash
 # Option 1: Using the script entry point (recommended)
 uv run just_facebook_mcp
 
-# Option 2: Run the Python file directly
-uv run python server.py
+# Option 2: Run the Python module directly
+uv run python -m just_facebook_mcp.server
 
 # Option 3: Activate virtual environment first
 source .venv/bin/activate
-python server.py
+python -m just_facebook_mcp.server
 ```
 
 ### 🧩 Using with Claude Desktop
@@ -128,34 +180,16 @@ To integrate with Claude Desktop:
 
 Add the following to your MCP configuration:
 
-**Option 1: Python file entry**
+**Option 1: Using the package entry point (recommended)**
 ```json
 {
   "mcpServers": {
-    "facebook-mcp": {
+    "just_facebook_mcp": {
       "command": "uv",
       "args": [
         "run",
         "--directory",
-        "/absolute/path/to/just_facebook_mcp",
-        "python",
-        "server.py"
-      ]
-    }
-  }
-}
-```
-
-**Option 2: Named entry point (recommended)**
-```json
-{
-  "mcpServers": {
-    "facebook-mcp": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        "/absolute/path/to/just_facebook_mcp",
+        "/absolute/path/to/just_facebook_mcp-server",
         "just_facebook_mcp"
       ]
     }
@@ -163,7 +197,37 @@ Add the following to your MCP configuration:
 }
 ```
 
-Replace /absolute/path/to/just_facebook_mcp with your actual project path.
+**Option 2: Using Python module**
+```json
+{
+  "mcpServers": {
+    "just_facebook_mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/absolute/path/to/just_facebook_mcp-server",
+        "python",
+        "-m",
+        "just_facebook_mcp.server"
+      ]
+    }
+  }
+}
+```
+
+**Option 3: If installed via pip**
+```json
+{
+  "mcpServers": {
+    "just_facebook_mcp": {
+      "command": "just_facebook_mcp"
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/just_facebook_mcp-server` with your actual project path.
 
 ### 🔧 Development
 **Running Tests**

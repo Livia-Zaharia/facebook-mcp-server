@@ -39,11 +39,16 @@ dev = [
     "flake8",
     "mypy",
 ]
+build = [
+    "build",
+    "twine",
+    "hatch",
+]
 
 
 
 [project.scripts]
-just_facebook_mcp = "server:main"
+just_facebook_mcp = "just_facebook_mcp:main"
 
 
 
@@ -55,11 +60,11 @@ build-backend = "hatchling.build"
 
 
 [tool.hatch.version]
-path = "server.py"
+path = "just_facebook_mcp/__init__.py"
 pattern = '__version__ = "(?P<version>[^"]+)"'
 
 [tool.hatch.build.targets.wheel]
-packages = ["."]
+packages = ["just_facebook_mcp"]
 
 [tool.black]
 line-length = 88
