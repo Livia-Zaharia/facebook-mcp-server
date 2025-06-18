@@ -109,7 +109,7 @@ To find your Page ID:
 ### 5. 🏃‍♂️ Running the Server
 ```bash
 # Option 1: Using the script entry point (recommended)
-uv run facebook-mcp-server
+uv run just_facebook_mcp
 
 # Option 2: Run the Python file directly
 uv run python server.py
@@ -137,7 +137,7 @@ Add the following to your MCP configuration:
       "args": [
         "run",
         "--directory",
-        "/absolute/path/to/facebook-mcp-server",
+        "/absolute/path/to/just_facebook_mcp",
         "python",
         "server.py"
       ]
@@ -155,15 +155,15 @@ Add the following to your MCP configuration:
       "args": [
         "run",
         "--directory",
-        "/absolute/path/to/facebook-mcp-server",
-        "facebook-mcp-server"
+        "/absolute/path/to/just_facebook_mcp",
+        "just_facebook_mcp"
       ]
     }
   }
 }
 ```
 
-Replace /absolute/path/to/facebook-mcp-server with your actual project path.
+Replace /absolute/path/to/just_facebook_mcp with your actual project path.
 
 ### 🔧 Development
 **Running Tests**
