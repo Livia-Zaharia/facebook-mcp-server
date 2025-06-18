@@ -1,6 +1,6 @@
 [project]
 name = "just_facebook_mcp"
-version = "0.0.0"
+version = "0.1.0"
 description = "MCP server for automating and managing interactions on a Facebook Page using the Facebook Graph API"
 readme = "README.md"
 license = "MIT"

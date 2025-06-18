@@ -7,6 +7,7 @@ __version__ = "0.1.0"
 mcp = FastMCP("FacebookMCP")
 manager = Manager()
 
+
 @mcp.tool()
 def post_to_facebook(message: str) -> dict[str, Any]:
     """Create a new Facebook Page post with a text message.
@@ -14,6 +15,7 @@ def post_to_facebook(message: str) -> dict[str, Any]:
     Output: dict with post ID and creation status
     """
     return manager.post_to_facebook(message)
+
 
 @mcp.tool()
 def reply_to_comment(post_id: str, comment_id: str, message: str) -> dict[str, Any]:
@@ -23,6 +25,7 @@ def reply_to_comment(post_id: str, comment_id: str, message: str) -> dict[str, A
     """
     return manager.reply_to_comment(post_id, comment_id, message)
 
+
 @mcp.tool()
 def get_page_posts() -> dict[str, Any]:
     """Fetch the most recent posts on the Page.
@@ -30,6 +33,7 @@ def get_page_posts() -> dict[str, Any]:
     Output: dict with list of post objects and metadata
     """
     return manager.get_page_posts()
+
 
 @mcp.tool()
 def get_post_comments(post_id: str) -> dict[str, Any]:
@@ -39,6 +43,7 @@ def get_post_comments(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_comments(post_id)
 
+
 @mcp.tool()
 def delete_post(post_id: str) -> dict[str, Any]:
     """Delete a specific post from the Facebook Page.
@@ -46,6 +51,7 @@ def delete_post(post_id: str) -> dict[str, Any]:
     Output: dict with deletion result
     """
     return manager.delete_post(post_id)
+
 
 @mcp.tool()
 def delete_comment(comment_id: str) -> dict[str, Any]:
@@ -55,6 +61,7 @@ def delete_comment(comment_id: str) -> dict[str, Any]:
     """
     return manager.delete_comment(comment_id)
 
+
 @mcp.tool()
 def delete_comment_from_post(post_id: str, comment_id: str) -> dict[str, Any]:
     """Alias to delete a comment on a post.
@@ -62,6 +69,7 @@ def delete_comment_from_post(post_id: str, comment_id: str) -> dict[str, Any]:
     Output: dict with deletion result
     """
     return manager.delete_comment_from_post(post_id, comment_id)
+
 
 @mcp.tool()
 def filter_negative_comments(comments: dict[str, Any]) -> list[dict[str, Any]]:
@@ -71,6 +79,7 @@ def filter_negative_comments(comments: dict[str, Any]) -> list[dict[str, Any]]:
     """
     return manager.filter_negative_comments(comments)
 
+
 @mcp.tool()
 def get_number_of_comments(post_id: str) -> int:
     """Count the number of comments on a given post.
@@ -78,6 +87,7 @@ def get_number_of_comments(post_id: str) -> int:
     Output: integer count of comments
     """
     return manager.get_number_of_comments(post_id)
+
 
 @mcp.tool()
 def get_number_of_likes(post_id: str) -> int:
@@ -87,6 +97,7 @@ def get_number_of_likes(post_id: str) -> int:
     """
     return manager.get_number_of_likes(post_id)
 
+
 @mcp.tool()
 def get_post_insights(post_id: str) -> dict[str, Any]:
     """Fetch all insights metrics (impressions, reactions, clicks, etc).
@@ -94,6 +105,7 @@ def get_post_insights(post_id: str) -> dict[str, Any]:
     Output: dict with multiple metrics and their values
     """
     return manager.get_post_insights(post_id)
+
 
 @mcp.tool()
 def get_post_impressions(post_id: str) -> dict[str, Any]:
@@ -103,6 +115,7 @@ def get_post_impressions(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_impressions(post_id)
 
+
 @mcp.tool()
 def get_post_impressions_unique(post_id: str) -> dict[str, Any]:
     """Fetch unique impressions of a post.
@@ -110,6 +123,7 @@ def get_post_impressions_unique(post_id: str) -> dict[str, Any]:
     Output: dict with unique impression count
     """
     return manager.get_post_impressions_unique(post_id)
+
 
 @mcp.tool()
 def get_post_impressions_paid(post_id: str) -> dict[str, Any]:
@@ -119,6 +133,7 @@ def get_post_impressions_paid(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_impressions_paid(post_id)
 
+
 @mcp.tool()
 def get_post_impressions_organic(post_id: str) -> dict[str, Any]:
     """Fetch organic impressions of a post.
@@ -126,6 +141,7 @@ def get_post_impressions_organic(post_id: str) -> dict[str, Any]:
     Output: dict with organic impression count
     """
     return manager.get_post_impressions_organic(post_id)
+
 
 @mcp.tool()
 def get_post_engaged_users(post_id: str) -> dict[str, Any]:
@@ -135,6 +151,7 @@ def get_post_engaged_users(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_engaged_users(post_id)
 
+
 @mcp.tool()
 def get_post_clicks(post_id: str) -> dict[str, Any]:
     """Fetch number of post clicks.
@@ -142,6 +159,7 @@ def get_post_clicks(post_id: str) -> dict[str, Any]:
     Output: dict with click count
     """
     return manager.get_post_clicks(post_id)
+
 
 @mcp.tool()
 def get_post_reactions_like_total(post_id: str) -> dict[str, Any]:
@@ -151,6 +169,7 @@ def get_post_reactions_like_total(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_reactions_like_total(post_id)
 
+
 @mcp.tool()
 def get_post_reactions_love_total(post_id: str) -> dict[str, Any]:
     """Fetch number of 'Love' reactions.
@@ -158,6 +177,7 @@ def get_post_reactions_love_total(post_id: str) -> dict[str, Any]:
     Output: dict with love count
     """
     return manager.get_post_reactions_love_total(post_id)
+
 
 @mcp.tool()
 def get_post_reactions_wow_total(post_id: str) -> dict[str, Any]:
@@ -167,6 +187,7 @@ def get_post_reactions_wow_total(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_reactions_wow_total(post_id)
 
+
 @mcp.tool()
 def get_post_reactions_haha_total(post_id: str) -> dict[str, Any]:
     """Fetch number of 'Haha' reactions.
@@ -174,6 +195,7 @@ def get_post_reactions_haha_total(post_id: str) -> dict[str, Any]:
     Output: dict with haha count
     """
     return manager.get_post_reactions_haha_total(post_id)
+
 
 @mcp.tool()
 def get_post_reactions_sorry_total(post_id: str) -> dict[str, Any]:
@@ -183,6 +205,7 @@ def get_post_reactions_sorry_total(post_id: str) -> dict[str, Any]:
     """
     return manager.get_post_reactions_sorry_total(post_id)
 
+
 @mcp.tool()
 def get_post_reactions_anger_total(post_id: str) -> dict[str, Any]:
     """Fetch number of 'Anger' reactions.
@@ -190,6 +213,7 @@ def get_post_reactions_anger_total(post_id: str) -> dict[str, Any]:
     Output: dict with anger count
     """
     return manager.get_post_reactions_anger_total(post_id)
+
 
 @mcp.tool()
 def get_post_top_commenters(post_id: str) -> list[dict[str, Any]]:
@@ -199,6 +223,7 @@ def get_post_top_commenters(post_id: str) -> list[dict[str, Any]]:
     """
     return manager.get_post_top_commenters(post_id)
 
+
 @mcp.tool()
 def post_image_to_facebook(image_url: str, caption: str) -> dict[str, Any]:
     """Post an image with a caption to the Facebook page.
@@ -206,6 +231,7 @@ def post_image_to_facebook(image_url: str, caption: str) -> dict[str, Any]:
     Output: dict of post result
     """
     return manager.post_image_to_facebook(image_url, caption)
+
 
 @mcp.tool()
 def send_dm_to_user(user_id: str, message: str) -> dict[str, Any]:
@@ -215,6 +241,7 @@ def send_dm_to_user(user_id: str, message: str) -> dict[str, Any]:
     """
     return manager.send_dm_to_user(user_id, message)
 
+
 @mcp.tool()
 def update_post(post_id: str, new_message: str) -> dict[str, Any]:
     """Updates an existing post's message.
@@ -222,6 +249,7 @@ def update_post(post_id: str, new_message: str) -> dict[str, Any]:
     Output: dict of update result
     """
     return manager.update_post(post_id, new_message)
+
 
 @mcp.tool()
 def schedule_post(message: str, publish_time: int) -> dict[str, Any]:
@@ -231,6 +259,7 @@ def schedule_post(message: str, publish_time: int) -> dict[str, Any]:
     """
     return manager.schedule_post(message, publish_time)
 
+
 @mcp.tool()
 def get_page_fan_count() -> int:
     """Get the Page's total fan/like count.
@@ -238,6 +267,7 @@ def get_page_fan_count() -> int:
     Output: integer fan count
     """
     return manager.get_page_fan_count()
+
 
 @mcp.tool()
 def get_post_share_count(post_id: str) -> int:
@@ -254,4 +284,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
