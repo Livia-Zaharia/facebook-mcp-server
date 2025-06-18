@@ -2,6 +2,8 @@ from mcp.server.fastmcp import FastMCP
 from manager import Manager
 from typing import Any
 
+__version__ = "0.1.0"
+
 mcp = FastMCP("FacebookMCP")
 manager = Manager()
 
@@ -243,4 +245,13 @@ def get_post_share_count(post_id: str) -> int:
     Output: integer share count
     """
     return manager.get_post_share_count(post_id)
+
+
+def main():
+    """Main entry point for the Facebook MCP server."""
+    mcp.run()
+
+
+if __name__ == "__main__":
+    main()
 

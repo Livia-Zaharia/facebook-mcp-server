@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "facebook-mcp-server"
+dynamic = ["version"]
+description = "MCP server for automating and managing interactions on a Facebook Page using the Facebook Graph API"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Facebook MCP Server", email = "contact@example.com" },
+]
+keywords = ["mcp", "facebook", "api", "social-media", "automation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Communications :: Chat",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "mcp",
+    "python-dotenv",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[project.scripts]
+facebook-mcp-server = "server:main"
+
+[project.urls]
+Homepage = "https://github.com/HagaiHen/facebook-mcp-server"
+Repository = "https://github.com/HagaiHen/facebook-mcp-server"
+Issues = "https://github.com/HagaiHen/facebook-mcp-server/issues"
+
+[tool.hatch.version]
+path = "server.py"
+pattern = '__version__ = "(?P<version>[^"]+)"'
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true 
