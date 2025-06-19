@@ -1,5 +1,10 @@
 # Just_Facebook MCP Server
 
+[![PyPI version](https://badge.fury.io/py/just-facebook-mcp.svg)](https://badge.fury.io/py/just-facebook-mcp)
+[![PyPI downloads](https://img.shields.io/pypi/dm/just-facebook-mcp.svg)](https://pypi.org/project/just-facebook-mcp/)
+[![Python versions](https://img.shields.io/pypi/pyversions/just-facebook-mcp.svg)](https://pypi.org/project/just-facebook-mcp/)
+[![License](https://img.shields.io/pypi/l/just-facebook-mcp.svg)](https://github.com/Livia-Zaharia/just_facebook_mcp/blob/main/LICENSE)
+
 This project is a **Model Context Protocol (MCP)** server for automating and managing interactions on a **Facebook Page** using the Facebook Graph API. It provides tools to create posts, moderate comments, fetch post insights, and filter negative feedback — ready to plug into Claude or any other LLM-based agent.
 
 > Originally developed from `@HagaiHen/facebook-mcp-server`, this version is intended for packaging and distribution via PyPI.
@@ -177,6 +182,34 @@ To integrate with Claude Desktop:
   1. Open Claude Desktop
 
   2. Go to Settings → Developer → Edit Config
+
+#### Fast setup with uvx
+
+You can use the MCP server without local installing with uvx:
+
+Add the following to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "just_facebook_mcp": {
+      "command": "uvx",
+      "args": [
+        "just_facebook_mcp"
+      ],
+      "env": {
+        "FACEBOOK_ACCESS_TOKEN": "<put_your_FB_token_here>",
+        "FACEBOOK_PAGE_ID": "<put_your_page_id_here>"
+      }
+    }
+  }
+}
+```
+
+
+#### Development local setup:
+
+If you already git-cloned the MCP server you can configure it locally.
 
 Add the following to your MCP configuration:
 
